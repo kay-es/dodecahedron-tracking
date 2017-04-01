@@ -62,11 +62,18 @@ void setup() {
   old_y = yRotation;
   old_z = zRotation;
 
-  currentSide = getSide(xRotation, yRotation, zRotation);
+  currentSide = getSide(xRotation, yRotation, zRotation); 
+  
+  if (EEPROM.read(0) != 0xff) {
+    for (int i = 0; i < 10; i++) {
+        times[i] = EEPROM.read(i);
+    }
+  }
+
   parseTimesToCSV(times);
   
   pinMode(ledPin1, OUTPUT);      // sets the digital pin as output
-  pinMode(ledPin2, OUTPUT);
+  pinMode(ledPin2, OUTPUT); 
 }
 
 // the loop routine runs over and over again forever w/ a 100ms sleep
@@ -99,6 +106,9 @@ void loop() {
         memset(times, 0, sizeof(times));
         parseTimesToCSV(times);
         Serial.println(getTimesCSVWithCurrentSide());
+        for (int i = 0; i < 10; i++) {
+          EEPROM.update(i, 0);
+        }
       }
     }
     else if (currentSide != -99) {
@@ -106,6 +116,9 @@ void loop() {
       dataAvailable = true;
       parseTimesToCSV(times);
       Serial.println(getTimesCSVWithCurrentSide());
+      for (int i = 0; i < 10; i++) {
+        EEPROM.write (i, times[i]);
+      }
     }
   }
   else {

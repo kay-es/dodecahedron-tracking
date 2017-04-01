@@ -30,11 +30,11 @@ void setup() {
       descriptorSize = descriptors.length;
       for(int i = 0; i < descriptorSize; i++) {
         String descriptor = descriptors[i];
-        text (descriptor, 191, 97 + i * 27);
+        text (descriptor, 191, 97 + i * 27.2);
       }  
       
       for(int i = 0; i < 10; i++) {
-        text (getParsedTime(0), 355, 97 + i * 27);
+        text (getParsedTime(0), 355, 97 + i * 27.2);
       }  
       
       /*
