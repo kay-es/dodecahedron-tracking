@@ -132,39 +132,41 @@ void loop() {
 
 
 int getSide(int x, int y, int z) {
-  if (inRange(x, -215) && inRange(y, 100) && inRange(z, -65)) {
+  if (inRange(x, 186) && inRange(y, -140) && inRange(z, -120)) {
     return 0;
   }
-  else if(inRange(x, -107) && inRange(y, 145) && inRange(z, 167)) {
+  else if(inRange(x, -75) && inRange(y, -144) && inRange(z, -198)) {
     return 1;
   }
-  else if(inRange(x, 157) && inRange(y, 133) && inRange(z, 146)) {
+  else if(inRange(x, -220) && inRange(y, -120) && inRange(z, 20)) {
     return 2;
   }
-  else if(inRange(x, 210) && inRange(y, 63) && inRange(z, -108)) {
+  else if(inRange(x, -75) && inRange(y, -107) && inRange(z, 234)) {
     return 3;
   }
-  else if(inRange(x, -15) && inRange(y, 40) && inRange(z, -240)) {
+  else if(inRange(x, 183) && inRange(y, -123) && inRange(z, 150)) {
     return 4;
   }
-  else if(inRange(x, 113) && inRange(y, -180) && inRange(z, -150)) {
+  else if(inRange(x, 235) && inRange(y, 90) && inRange(z, -10)) {
     return 5;
   }
-  else if(inRange(x, -150) && inRange(y, -160) && inRange(z, -133)) {
+  else if(inRange(x, 75) && inRange(y, 75) && inRange(z, -220)) {
     return 6;
   }
-  else if(inRange(x, -211) && inRange(y, -93) && inRange(z, 120)) {
+  else if(inRange(x, -176) && inRange(y, 90) && inRange(z, -139)) {
     return 7;
   }
-  else if(inRange(x, 17) && inRange(y, -72) && inRange(z, 253)) {
+  else if(inRange(x, -180) && inRange(y, 119) && inRange(z, 130)) {
     return 8;
   }
-  else if(inRange(x, 218) && inRange(y, -128) && inRange(z, 80)) {
+  else if(inRange(x, 78) && inRange(y, 114) && inRange(z, 215)) {
     return 9;
   }
-  else if(inRange(x, -15) && inRange(y, -267) && inRange(z, 52)) {
+  // Head
+  else if(inRange(x, -5) && inRange(y, -265) && inRange(z, 38)) {
     return -99;
   }
+  // Bottom
   return -1;
   
 }

@@ -1,5 +1,6 @@
 import processing.serial.*;
-
+import java.text.NumberFormat;
+import java.util.Locale;
 
 Serial myPort;
 PImage bg;
@@ -8,6 +9,8 @@ String serialPort = "/tmp/cu.Lightblue-Bean";
 
 String descriptors[] = {"Arbeiten", "Daily Scrum", "Sprint Planning", "Spring Review", "Sprint Retrospektive", "PB Refinement", "Kaffee", "Toilette", "Mittagspause", "Anderes"};
 int descriptorSize;
+
+final float CENT_PER_SECOND = 2.48333;
 
 String status;
 
@@ -35,7 +38,8 @@ void setup() {
       
       for(int i = 0; i < 10; i++) {
         text (getParsedTime(0), 355, 97 + i * 27.2);
-      }  
+        text (getParsedMoney(0), 520, 97 + i * 27.2);
+      }
       
       /*
     textSize(10);
@@ -86,9 +90,12 @@ void draw() {
         if (activeSideId == i) {
           fill(0, 128, 255);
         }
-        String timeFormat = getParsedTime(Integer.parseInt(time));
+        int totalSeconds = Integer.parseInt(time);
+        String timeFormat = getParsedTime(totalSeconds);
         text (timeFormat, 355, 97 + i * 27.2);
-      }  
+        String moneyFormat = getParsedMoney(totalSeconds);
+        text (moneyFormat, 520, 97 + i * 27.2);
+      }
       
      
       
@@ -111,3 +118,11 @@ String getParsedTime(int totalSecs) {
 
   return String.format("%02d:%02d:%02d", hours, minutes, seconds);
 }
+
+String getParsedMoney(int totalSecs) {
+  float totalCents = totalSecs * CENT_PER_SECOND;
+  NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.GERMANY);
+  
+  return String.format(nf.format(totalCents/100.0));
+}
+  
