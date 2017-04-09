@@ -1,15 +1,13 @@
 /*
 TIMER
-* Controls the Bean board
-* sends signal if accelerometer is still for 2 secs or is moving
 */
 
-/*
+/*s
  * init EEPROM 
  */
  #include <EEPROM.h>
 
-// vibramotor pins
+/* vibramotor pins */
 int ledPin1 = 0;
 int ledPin2 = 1;
 
@@ -44,9 +42,7 @@ int old_z = 0;
 AccelerationReading accel;
 
 void setup() {
-  // Optional: Use Bean.setAccelerationRange() to set the sensitivity
-  // to something other than the default of ±2g.
-  //Connection speed must be same as app.
+  
   Serial.begin(57600);
   accel = Bean.getAcceleration();
 
@@ -54,7 +50,7 @@ void setup() {
   timeSinceStillMS = millis();
   currentMillis = millis();
 
-  //set our initial accel values
+  //set initial accel values
   xRotation = (accel.xAxis);
   yRotation = (accel.yAxis),
   zRotation = (accel.zAxis);
@@ -76,7 +72,7 @@ void setup() {
   pinMode(ledPin2, OUTPUT); 
 }
 
-// the loop routine runs over and over again forever w/ a 100ms sleep
+// the loop routine w/ a 100ms sleep
 void loop() {
 
   accel = Bean.getAcceleration();
@@ -125,7 +121,7 @@ void loop() {
     Serial.println(getTimesCSVWithCurrentSide());
   }
 
-  //1 oder 1000? :o
+  // add offset to currentMillis because of sleep for one second
   currentMillis += 1000;
   Bean.sleep(1000);
 }
@@ -191,15 +187,14 @@ boolean isStill(int x, int y, int z) {
   //check for movement with a 40 threshold
   if(delta_x > 40 || delta_x < -40 || delta_y > 40 || delta_y < -40 || delta_z > 40 || delta_z < -40) {
 
-    //if we are moving, grab the new values to compare
+    //if  moving, grab the new values to compare
     old_x = x;
     old_y = y;
     old_z = z;
-
+    
     return false;
   }
 
-  //if change in each variable isn't above the threshold we aren't moving
   return true;
 }
 

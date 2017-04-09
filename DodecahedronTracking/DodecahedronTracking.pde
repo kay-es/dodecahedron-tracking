@@ -40,13 +40,6 @@ void setup() {
         text (getParsedTime(0), 355, 97 + i * 27.2);
         text (getParsedMoney(0), 520, 97 + i * 27.2);
       }
-      
-      /*
-    textSize(10);
-    status = "Status: Warte auf Verbindung";
-    text (status, 500, 390);
-    */
- 
 }
 
 void draw() { 
@@ -96,19 +89,9 @@ void draw() {
         String moneyFormat = getParsedMoney(totalSeconds);
         text (moneyFormat, 520, 97 + i * 27.2);
       }
-      
-     
-      
-     
-     
-      textSize(10);
-      status = "Status: Verbunden mit " + serialPort;     
-      
       delay(300);
-      
     }
   } 
-  status = "Status: Warte auf Verbindung";
 }
 
 String getParsedTime(int totalSecs) {
